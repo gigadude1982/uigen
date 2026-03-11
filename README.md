@@ -2,6 +2,11 @@
 
 AI-powered React component generator with live preview.
 
+## Authors
+
+- Dalton B. Mangrum
+- Claude Code
+  
 ## Prerequisites
 
 - Node.js 18+
