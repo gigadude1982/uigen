@@ -41,28 +41,41 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
 
-          custom_instructions: |
-              The project is already set up with all dependencies installed.
-              The server is already running at localhost:3000. Logs from it
-              are being written to logs.txt. If needed, you can query the
-              db with the 'sqlite3' cli. If needed, use the mcp__playwright
-              set of tools to launch a browser and interact with the app.
 
-          mcp_config: |
-              {
-                "mcpServers": {
-                  "playwright": {
-                    "command": "npx",
-                    "args": [
-                      "@playwright/mcp@latest",
-                      "--allowed-origins",
-                      "localhost:3000;cdn.tailwindcss.com;esm.sh"
-                    ]
-                  }
-                }
-              }
+        ##############################################################################################################
+        # TODO: figure out the new syntax to configure claude github action wtihout generating the following warning
+        # Warning: Unexpected input(s) 'custom_instructions', 'mcp_config', 'allowed_tools', valid inputs
+        # are ['trigger_phrase', 'assignee_trigger', 'label_trigger', 'base_branch', 'branch_prefix',
+        # 'branch_name_template', 'allowed_bots', 'allowed_non_write_users', 'include_comments_by_actor',
+        # 'exclude_comments_by_actor', 'prompt', 'settings', 'anthropic_api_key', 'claude_code_oauth_token',
+        # 'github_token', 'use_bedrock', 'use_vertex', 'use_foundry', 'claude_args', 'additional_permissions',
+        # 'use_sticky_comment', 'use_commit_signing', 'ssh_signing_key', 'bot_id', 'bot_name', 'track_progress',
+        # 'include_fix_links', 'path_to_claude_code_executable', 'path_to_bun_executable', 'display_report',
+        # 'show_full_output', 'plugins', 'plugin_marketplaces']
+        ##############################################################################################################
 
-          allowed_tools: "Bash(npm:*),Bash(sqlite3:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click,..."
+#          custom_instructions: |
+#              The project is already set up with all dependencies installed.
+#              The server is already running at localhost:3000. Logs from it
+#              are being written to logs.txt. If needed, you can query the
+#              db with the 'sqlite3' cli. If needed, use the mcp__playwright
+#              set of tools to launch a browser and interact with the app.
+#
+#          mcp_config: |
+#              {
+#                "mcpServers": {
+#                  "playwright": {
+#                    "command": "npx",
+#                    "args": [
+#                      "@playwright/mcp@latest",
+#                      "--allowed-origins",
+#                      "localhost:3000;cdn.tailwindcss.com;esm.sh"
+#                    ]
+#                  }
+#                }
+#              }
+#
+#          allowed_tools: "Bash(npm:*),Bash(sqlite3:*),mcp__playwright__browser_snapshot,mcp__playwright__browser_click,..."
 
           # This is an optional setting that allows Claude to read CI results on PRs
           additional_permissions: |
